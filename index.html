@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>passward</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            body{
+                background-color: cornflowerblue;
+                font-size: 12px;
+            }
+            .clk{
+                padding:5px
+            }
+            .txt-showpassword{
+                position: relative;
+                bottom:2px
+            }
+            .password-control{
+                font-size: 12px;
+                padding:5px;
+            }
+            .label_font{
+                position: relative;
+                top:7px;
+            }
+            form{
+                display: table-caption;
+            }
+            input:required[type=passward]:invalid {
+                 color: red;
+                 border-color: red;
+            }
+            input:required[type=text]:valid {
+            color: green;
+            border-color: green;
+            box-shadow: none; 
+            }
+        </style>
+    </head>
+    <body>
+     <div class="container">
+         <div class="row"> 
+            <div class = "col-sm-4"></div>
+            <div class = "col-sm-4">
+                <form>
+            <div class = "passward">
+                <label class="label_font"> Passward <span style="color: red;">*</span></label>
+                <input type="password" placeholder="Enter passward"  title="Must contain atleast one number,one uppercase,one lowercase,one special character(@.&amp;_,-) and atleast 8 or more characters"
+                    data-toggle="myToolTip" minlength="8" id="Passward" name="passward" value="" maxlength="14" autocomplete="off"  class="password-control" required
+                     pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,-/&amp;@_])[A-Za-z\d.,-/&amp;@_]{8,20}" />        
+            </div>
+
+            <div class= "Confirm-passward">
+                <label class="label_font"> Confirm Passward <span style="color: red;">*</span></label>
+                 <input type="password" id="txtConfirmPassword" name="txtConfirmPassword" placeholder="Confirm passward"  
+                 minlength="8" value="" maxlength="14" autocomplete="off" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,-/&@_])[A-Za-z\d.,-/&@_]{8,20}"
+                class="password-control" value="" required/> 
+                <div id="Check-text"> </div>
+            </div>
+            
+            <div class="clk">
+                <input type="checkbox" onclick="myPassword()"> <lable class="txt-showpassword"> Show password </lable>
+            </div>
+
+            <button type="submit"  value= "Submit" id="Check-password" class="pure-button pure-button-primary" > Submit</button>
+
+
+            
+
+            </form>
+        </div>
+        <div class = "col-sm-4"></div>
+
+    </div>
+
+    </body>
+    <script>
+        function myPassword() {
+          var x = document.getElementById("Passward");
+           if (x.type === "password") {
+           x.type = "text";
+           } 
+           else {
+           x.type = "password";
+           }
+        }
+
+        $(document).ready(function(){
+            $("#txtConfirmPassword").keyup(validate);
+        });
+        function validate(){
+            var password1 = $("#Passward").val();
+            var password2 = $("#txtConfirmPassword").val();
+            if (password1 == password2){
+                $("#Check-text").text("");
+                $('#Check-password').attr('disabled', false);
+            }
+            else{
+                $("#Check-text").text("Passward do not match!");
+                $('#Check-password').attr('disabled', true);
+                
+            }
+        }
+             
+            // Function to check Whether both passwords
+            // is same or not.
+         
+          
+    </script>
+</html>
+
+
+
+
+
+
+
+<!-- function checkPassword(form) {
+    password1 = form.password1.value;
+    password2 = form.password2.value;
+
+    // If password not entered
+    if (password1 == '')
+        alert ("Please enter Password");
+          
+    // If confirm password not entered
+    else if (password2 == '')
+        alert ("Please enter confirm password");
+          
+    // If Not same return False.    
+    else if (password1 != password2) {
+        alert ("\nPassword did not match: Please try again...")
+        return false;
+    }
+
+    // If same return True.
+    else{
+        alert("Password Match: Welcome to GeeksforGeeks!")
+        return true;
+    }
+} -->
